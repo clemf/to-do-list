@@ -44,5 +44,7 @@ $("form#task-form").submit(function(event) {
 
   listTasks();
 
+  $("input#description").val("");
+
   event.preventDefault();
 });

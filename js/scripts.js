@@ -23,7 +23,7 @@ $("form#task-form").submit(function(event) {
   addTask(description, toDoList);
 
   toDoList.forEach(function(task) {
-    $("ul#tasks").append("<li class='list-group-item'>" + task.description + "</li>");
+    $("ul#tasks").append("<li class='list-group-item'><input type='checkbox'> " + task.description + "</li>");
   });
 
   event.preventDefault();

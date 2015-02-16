@@ -22,6 +22,8 @@ $("form#task-form").submit(function(event) {
   var description = $("input#description").val();
   addTask(description, toDoList);
 
+  $("ul#tasks").empty();
+
   toDoList.forEach(function(task) {
     $("ul#tasks").append("<li class='list-group-item'><input type='checkbox'> " + task.description + "</li>");
   });

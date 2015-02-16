@@ -14,23 +14,29 @@ function addTask(description, array) {
   return task;
 }
 
-function completeTask(task) {
+function completeTask(id) {
+  var task = toDoList[id];
+  toDoList.splice(id, 1);
   task.complete = true;
+  completed.push(task)
+  listTasks()
   return task;
+}
+
+function listTasks() {
+  $("ul#tasks").empty();
+
+  for (var i = 0; i < toDoList.length; i += 1) {
+    var task = toDoList[i];
+    $("ul#tasks").append("<li class='list-group-item'><input type='checkbox' onclick='completeTask(" + i + ")'> " + task.description + "</li>");
+  }
 }
 
 $("form#task-form").submit(function(event) {
   var description = $("input#description").val();
   addTask(description, toDoList);
 
-  $("ul#tasks").empty();
-
-  for (var i = 0; i < toDoList.length; i += 1) {
-    var task = toDoList[i];
-    $("ul#tasks").append("<li class='list-group-item'><input type='checkbox' id='" + i + "'> " + task.description + "</li>");
-  }
-
-
+  listTasks();
 
   event.preventDefault();
 });

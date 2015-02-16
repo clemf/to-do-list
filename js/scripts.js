@@ -7,11 +7,24 @@ Task.prototype = new Task();
 
 var toDoList = [];
 
-function addTask(description, done) {
-  toDoList.push(new Task("walk dog", false));
+function addTask(description, array) {
+  var task = new Task(description, false);
+  array.push(task);
+  return task;
 }
 
 function completeTask(task) {
   task.complete = true;
   return task;
 }
+
+$("form#task-form").submit(function(event) {
+  var description = $("input#description").val();
+  addTask(description, toDoList);
+
+  toDoList.forEach(function(task) {
+    $("ul#tasks").append("<li class='list-group-item'>" + task.description + "</li>");
+  });
+
+  event.preventDefault();
+});

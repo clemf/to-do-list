@@ -6,6 +6,7 @@ var Task = function(description, complete) {
 Task.prototype = new Task();
 
 var toDoList = [];
+var completed = [];
 
 function addTask(description, array) {
   var task = new Task(description, false);
@@ -24,9 +25,12 @@ $("form#task-form").submit(function(event) {
 
   $("ul#tasks").empty();
 
-  toDoList.forEach(function(task) {
-    $("ul#tasks").append("<li class='list-group-item'><input type='checkbox'> " + task.description + "</li>");
-  });
+  for (var i = 0; i < toDoList.length; i += 1) {
+    var task = toDoList[i];
+    $("ul#tasks").append("<li class='list-group-item'><input type='checkbox' id='" + i + "'> " + task.description + "</li>");
+  }
+
+
 
   event.preventDefault();
 });

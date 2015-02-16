@@ -25,10 +25,16 @@ function completeTask(id) {
 
 function listTasks() {
   $("ul#tasks").empty();
+  $("ul#completed").empty();
 
   for (var i = 0; i < toDoList.length; i += 1) {
     var task = toDoList[i];
     $("ul#tasks").append("<li class='list-group-item'><input type='checkbox' onclick='completeTask(" + i + ")'> " + task.description + "</li>");
+  }
+
+  for (var i = 0; i < completed.length; i += 1) {
+    var task = completed[i];
+    $("ul#completed").append("<li class='list-group-item'>" + task.description + "</li>");
   }
 }
 
